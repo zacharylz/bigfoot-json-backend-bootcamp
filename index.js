@@ -4,7 +4,7 @@ import { getSightings } from "./utils.js";
 const PORT = 3000;
 const app = express();
 
-app.get("/", async (req, res) => {
+app.get("/sightings", async (req, res) => {
   const sightings = await getSightings();
   res.json(sightings);
 });
