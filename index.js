@@ -1,7 +1,8 @@
-import express from "express";
-import { getSightings } from "./utils.js";
+const express = require('express')
+const { getSightings } = require('./utils.js')
+require('dotenv').config()
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 const app = express();
 
 app.get("/sightings", async (req, res) => {
