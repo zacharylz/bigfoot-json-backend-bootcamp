@@ -1,25 +1,28 @@
-// const express = require("express");
-// const { getSightings } = require("./utils.js");
-// require("dotenv").config();
 import express from "express";
 import cors from "cors";
-import { getSightings, getSpecificSighting } from "./utils.js";
-import "dotenv/config";
+// import { getSightings } from "./utils.js";
+import "./environment.js";
+import SightingRouter from "./routers/SightingRouter.js";
 
-const PORT = process.env.PORT;
 const app = express();
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.get("/sightings", async (req, res) => {
-  const sightings = await getSightings();
-  res.json(sightings);
-});
+app.use("/", new SightingRouter().router);
 
-app.get("/sightings/:report_number", async (req, res) => {
-  const sightings = await getSpecificSighting(req.params.report_number);
-  res.json(sightings);
-});
+// app.get("/sightings", async (req, res) => {
+//   const sightings = await getSightings();
+//   res.json(sightings);
+// });
+
+// app.get("/sightings/:report_number", async (req, res) => {
+//   const sightings = await getSightings(req.params.report_number);
+//   res.json(sightings);
+// });
+
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);

@@ -1,0 +1,30 @@
+npm install pg sequelize sequelize-cli
+
+sequelize init
+
+- move migration, seeder folders to a folder to group them
+- create sequelizerc
+- change config file to .js
+- to config file:
+  -- require ('dotenv').config()
+  -- module.exports={...}
+  -- process.env.POSTGRES_ETC...
+
+Create migrations:
+sequelize migrations:generate --name create-<table name>-table
+
+Execute migrations:
+
+- sequelize db:migrate
+
+(if making updates to an existing migration, create a new migration that makes the desired alterations)
+
+Create seeders:
+sequelize seed:generate --name seed-<table name>-table
+
+Execute seeders:
+sequelize db:seed:all
+
+TablePlus, DBeaver, to view database
+
+- connect using info in sequelize config file
